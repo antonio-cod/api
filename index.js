@@ -1,35 +1,42 @@
-import express from "express"
-import cors from "cors"
-import alunoRoutes from "./routes/aluno.js"
-import aulaRoutes from "./routes/aula.js"
-import inscricaoRoutes from "./routes/inscricao.js"
-import presencaRoutes from "./routes/presenca.js"
-import authRoutes from "./routes/auth.js"
-const app = express()
+import express from "express";
+import cors from "cors";
+import alunoRoutes from "./routes/aluno.js";
+import aulaRoutes from "./routes/aula.js";
+import inscricaoRoutes from "./routes/inscricao.js";
+import presencaRoutes from "./routes/presenca.js";
+import authRoutes from "./routes/auth.js";
+import responsavelRoutes from "./routes/responsavel.js";
+import situacaoFamiliarRoutes from "./routes/situacao_familiar.js";
+import perfilEducacionalRoutes from "./routes/perfil_educacional.js";
+import barreirasAcessoRoutes from "./routes/barreiras_acesso.js";
+import expectativasObjetivosRoutes from "./routes/expectativas_e_objetivos.js";
+import avaliacaoBemEstarRoutes from "./routes/avaliacao_bem_estar.js";
+import historicoNoProjetoRoutes from "./routes/historico_no_projeto.js";
+import termosRoutes from "./routes/termos.js";
 
-// var whitelist = [
-//   'https://admin.casaraodasartespedra90.com.br',
-//   'http://localhost:3000' // se quiser testar local
-// ];
-// var corsOptions = {
-//   origin: function (origin, callback) {
-//     // Permite requisições sem origin (ex: Postman, localhost)
-//     if (!origin || whitelist.indexOf(origin) !== -1) {
-//       callback(null, true);
-//     } else {
-//       callback(new Error('Not allowed by CORS'));
-//     }
-//   },
-//   credentials: true
-// }
+const app = express();
 
-app.use(express.json())
-app.use(cors())
-app.use("/alunos", alunoRoutes)
-app.use("/aulas", aulaRoutes)
-app.use("/inscricoes", inscricaoRoutes)
-app.use("/presencas", presencaRoutes)
-app.use("/auth", authRoutes)
+// Middleware
+app.use(cors());
+app.use(express.json());
 
+// Routes
+app.use("/aluno", alunoRoutes);
+app.use("/aula", aulaRoutes);
+app.use("/inscricao", inscricaoRoutes);
+app.use("/presenca", presencaRoutes);
+app.use("/auth", authRoutes);
+app.use("/responsavel", responsavelRoutes);
+app.use("/situacao-familiar", situacaoFamiliarRoutes);
+app.use("/perfil-educacional", perfilEducacionalRoutes);
+app.use("/barreiras-acesso", barreirasAcessoRoutes);
+app.use("/expectativas-objetivos", expectativasObjetivosRoutes);
+app.use("/avaliacao-bem-estar", avaliacaoBemEstarRoutes);
+app.use("/historico-no-projeto", historicoNoProjetoRoutes);
+app.use("/termos", termosRoutes);
 
-app.listen(8080, () => console.log("server up in 8080"))
+// Start server
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});

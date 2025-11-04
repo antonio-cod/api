@@ -1,5 +1,5 @@
 // import database from "pg"
-// import * as dotenv from "dotenv" 
+// import * as dotenv from "dotenv"
 
 // dotenv.config();
 
@@ -14,15 +14,15 @@
 // db.connect(function (err) {
 //     if (err) throw err;
 //     console.log("Connected!");
-// }); 
-
+// });
 
 import database from "pg";
 import * as dotenv from "dotenv";
 
 dotenv.config();
 
+// Usando DATABASE_URL diretamente
 export const db = new database.Pool({
   connectionString: process.env.DATABASE_URL,
-  ssl: { rejectUnauthorized: false }
+  ssl: false,
 });

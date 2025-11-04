@@ -14,6 +14,11 @@ dist-ssr
 .env
 .env.development
 .env.production
+.env.local
+
+# Docker volumes e dados
+postgres_data/
+pgadmin_data/
 
 # Editor directories and files
 .vscode/*
